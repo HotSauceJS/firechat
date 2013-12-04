@@ -877,6 +877,12 @@
       if ((e.which === 13) && (message !== '')) {
         $textarea.val('');
         self._chat.sendMessage(roomId, message);
+        
+        var re = /^@/;
+        if (re.test(message)) {
+          $.post("http://hstext.herokuapp.com/mention", {message:message});
+        }
+
         return false;
       }
     });
